@@ -1,5 +1,7 @@
 package de.exxcellent.challenge.controller;
 
+import de.exxcellent.challenge.exception.ExceptionChallenge;
+
 public interface DataWrapper {
 
 	void ReadDataFromCSVandStoreinOODB(String pathtofile) throws ExceptionChallenge ;
