@@ -56,8 +56,6 @@ public class Tasks {
 				FootballWrapper footballwrapper = new FootballWrapper(db);
 				footballwrapper.ReadDataFromCSVandStoreinOODB(footballpath);
 				Function<Football, Integer> goalvsalloweddiff = f -> Math.abs(f.getGoals() -f.getGoals_allowed()); 
-				
-				db.getFootballList().stream().map(goalvsalloweddiff).forEach(System.out::println);
 				Football selectedfootball = db.getFootballList().stream().min(Comparator.comparing(goalvsalloweddiff)).orElseThrow(NoSuchElementException::new);			    
 				return String.valueOf(selectedfootball.getTeam());
 			} catch (ExceptionChallenge e) {
