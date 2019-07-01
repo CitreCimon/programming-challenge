@@ -12,7 +12,7 @@ import de.exxcellent.challenge.repository.Weather;
 public class Tasks {
 		
 		//config
-		final String weatherpath = "weather.csv";
+		final String weatherpath = "de/exxcellent/challenge/weather.csv";
 		private DataBase db;
 		
 		
@@ -31,7 +31,6 @@ public class Tasks {
 				weatherwrapper.ReadDataFromCSVandStoreinOODB(weatherpath);
 				Function<Weather, Double> mindiffmaxmintemp = w -> w.getMxt() -  w.getMnt(); 
 				
-				db.getWeatherList().stream().map(mindiffmaxmintemp).forEach(System.out::println);
 				Weather selectedweather = db.getWeatherList().stream().min(Comparator.comparing(mindiffmaxmintemp)).orElseThrow(NoSuchElementException::new);			    
 				return String.valueOf(selectedweather.getDay());
 				
