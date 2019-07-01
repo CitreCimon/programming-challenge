@@ -4,15 +4,18 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
+import de.exxcellent.challenge.controller.FootballWrapper;
 import de.exxcellent.challenge.controller.WeatherWrapper;
 import de.exxcellent.challenge.exception.ExceptionChallenge;
 import de.exxcellent.challenge.repository.DataBase;
+import de.exxcellent.challenge.repository.Football;
 import de.exxcellent.challenge.repository.Weather;
 
 public class Tasks {
 		
 		//config
 		final String weatherpath = "de/exxcellent/challenge/weather.csv";
+		final String footballpath = "de/exxcellent/challenge/football.csv";
 		private DataBase db;
 		
 		
@@ -41,6 +44,30 @@ public class Tasks {
 			}
 			
 		}
+		
+		/**
+		 * 
+		Football
+	    The football.csv file contains results of the English Premier League. The columns labeled ‘Goals’ and ‘Goals Allowed’ contain the total number of goals scored by and against each team (so Arsenal scored 79 goals themselves and had 36 goals scored against them). Read the file, then print the name of the team with the smallest distance (absolute difference) between ‘Goals’ and ‘Goals Allowed’.
+		* 
+		 */
+		public String solveFootballChallenge(){
+			try {
+				FootballWrapper footballwrapper = new FootballWrapper(db);
+				footballwrapper.ReadDataFromCSVandStoreinOODB(footballpath);
+				Function<Football, Integer> goalvsalloweddiff = f -> Math.abs(f.getGoals() -f.getGoals_allowed()); 
+				
+				db.getFootballList().stream().map(goalvsalloweddiff).forEach(System.out::println);
+				Football selectedfootball = db.getFootballList().stream().min(Comparator.comparing(goalvsalloweddiff)).orElseThrow(NoSuchElementException::new);			    
+				return String.valueOf(selectedfootball.getTeam());
+			} catch (ExceptionChallenge e) {
+				e.printStackTrace();
+				System.exit(0);
+				return null;
+			}
+			
+		}
+		
 		
 	
 	
