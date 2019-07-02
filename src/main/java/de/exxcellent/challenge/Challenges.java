@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import java.io.InputStream;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
@@ -18,15 +19,20 @@ import de.exxcellent.challenge.service.impl.WeatherWrapper;
 public class Challenges {
 		
 		//config
-		private String weatherpath = "de/exxcellent/challenge/weather.csv";
-		private String footballpath = "de/exxcellent/challenge/football.csv";
 		private DataBase db;
-		
+		private InputStream weatherStream;
+		private InputStream footballStream;
 		
 		public Challenges(){
-			 db = new DataBase();	
+			 db = new DataBase();
+			 initFileStreams();
 		}
-			
+		
+		private void initFileStreams(){
+			weatherStream = this.getClass().getResourceAsStream("weather.csv");
+			footballStream = this.getClass().getResourceAsStream("football.csv");
+		}
+		
 		/**
 		 * Solves the weather-challenge
 		 * 
@@ -35,7 +41,7 @@ public class Challenges {
 		public String solveWeatherChallenge(){
 			try {
 				WeatherWrapper weatherwrapper = new WeatherWrapper(db);
-				weatherwrapper.ReadDataFromCSVandStoreinOODB(weatherpath);
+				weatherwrapper.ReadDataFromCSVandStoreinOODB(weatherStream);
 				Function<Weather, Double> mindiffmaxmintemp = w -> w.getMxt() -  w.getMnt(); 
 				
 				Weather selectedweather = db.getWeatherList().stream().min(Comparator.comparing(mindiffmaxmintemp)).orElseThrow(NoSuchElementException::new);			    
@@ -56,7 +62,7 @@ public class Challenges {
 		public String solveFootballChallenge(){
 			try {
 				FootballWrapper footballwrapper = new FootballWrapper(db);
-				footballwrapper.ReadDataFromCSVandStoreinOODB(footballpath);
+				footballwrapper.ReadDataFromCSVandStoreinOODB(footballStream);
 				Function<Football, Integer> goalvsalloweddiff = f -> Math.abs(f.getGoals() -f.getGoals_allowed()); 
 				Football selectedfootball = db.getFootballList().stream().min(Comparator.comparing(goalvsalloweddiff)).orElseThrow(NoSuchElementException::new);			    
 				return String.valueOf(selectedfootball.getTeam());

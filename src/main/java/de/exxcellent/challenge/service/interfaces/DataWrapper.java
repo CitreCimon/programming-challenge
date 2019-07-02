@@ -1,5 +1,7 @@
 package de.exxcellent.challenge.service.interfaces;
 
+import java.io.InputStream;
+
 import de.exxcellent.challenge.exception.ExceptionChallenge;
 
 public interface DataWrapper {
@@ -9,7 +11,7 @@ public interface DataWrapper {
 	 * Using the {@link #mapCSVEntrytoOO} as wrapper
 	 * Using the {@link #checkstructure} to proof the structure
 	 */
-	void ReadDataFromCSVandStoreinOODB(String pathtofile) throws ExceptionChallenge ;
+	void ReadDataFromCSVandStoreinOODB(InputStream pathtofile) throws ExceptionChallenge ;
 	/**
 	 * Helper method for the {@link #ReadDataFromCSVandStoreinOODB} to map columns to object
 	 */

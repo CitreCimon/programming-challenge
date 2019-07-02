@@ -17,16 +17,15 @@ public abstract class FileWrapper implements DataWrapper{
 		classLoader = ClassLoader.getSystemClassLoader();
 	}
 
-	@Override
-	public void ReadDataFromCSVandStoreinOODB(String pathtofile) throws ExceptionChallenge  {		
+	public void ReadDataFromCSVandStoreinOODB(InputStream inputStream) throws ExceptionChallenge  {		
 		try {
-			InputStream inputStream = classLoader.getResourceAsStream(pathtofile);
+			//InputStream inputStream = classLoader.getResourceAsStream(inputStream2);
 			if  (null == inputStream){
-				throw new ExceptionChallenge("Resource: " + pathtofile + " is not available.");
+				throw new ExceptionChallenge("Resource: " + inputStream + " is not available.");
 			}
 			BufferedReader javaFileReader =  new BufferedReader(new InputStreamReader(inputStream));
 			String line = javaFileReader.readLine();
-			checkstructure(line, Weather.getStructure() );
+			checkstructure(line, null);
 			while (line != null) {
 				line = javaFileReader.readLine();
 				if (line != null){
@@ -34,7 +33,7 @@ public abstract class FileWrapper implements DataWrapper{
 				}
 			}
 		} catch (IOException e) {
-			throw new ExceptionChallenge("Could not read " + pathtofile + " File.");
+			throw new ExceptionChallenge("Could not read " + inputStream + " File.");
 		}
 		
 	}
@@ -43,7 +42,7 @@ public abstract class FileWrapper implements DataWrapper{
 	}
 	
 	public void checkstructure(String line, String structure) throws ExceptionChallenge {
-		if (line.equals(null)){
+		if (line == null){
 			throw new ExceptionChallenge("There is no header defined.");
 		}
 		if (!line.equals(structure)){
