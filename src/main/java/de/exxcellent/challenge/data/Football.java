@@ -1,7 +1,9 @@
-package de.exxcellent.challenge.repository;
+package de.exxcellent.challenge.data;
 
 
-
+/**
+ * Football data object with all attributes of the csv file
+ */
 public class Football {
 	
 	private String team;

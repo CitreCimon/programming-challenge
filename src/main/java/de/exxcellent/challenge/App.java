@@ -15,11 +15,11 @@ public final class App {
     public static void main(String... args) {
 
         // Your preparation code …
-    	Tasks tasks= new Tasks();
-        String dayWithSmallestTempSpread = tasks.solveWeatherChallenge();
+    	Challenges challanges= new Challenges();
+        String dayWithSmallestTempSpread = challanges.solveWeatherChallenge();
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
-        String teamWithSmallestGoalSpread = tasks.solveFootballChallenge();
+        String teamWithSmallestGoalSpread = challanges.solveFootballChallenge();
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }
 }

@@ -1,8 +1,8 @@
-package de.exxcellent.challenge.controller;
+package de.exxcellent.challenge.service.impl;
 
+import de.exxcellent.challenge.data.DataBase;
+import de.exxcellent.challenge.data.Weather;
 import de.exxcellent.challenge.exception.ExceptionChallenge;
-import de.exxcellent.challenge.repository.DataBase;
-import de.exxcellent.challenge.repository.Weather;
 
 public class WeatherWrapper extends FileWrapper{
 	
@@ -13,14 +13,11 @@ public class WeatherWrapper extends FileWrapper{
 		this.db = db;
 	}
 	
-	@Override
 	public void mapCSVEntrytoOO(String line) throws ExceptionChallenge{
 		
-
 		String[] linearr = line.split(Weather.getSeperator());
 		checknumberofColumns(linearr, Weather.getNumberofColumns());
 		Weather weather = new Weather();
-		//TODO: Prase Excpetion
 		weather.setDay(Integer.parseInt((linearr[0])));
 		weather.setMxt(Integer.parseInt(linearr[1]));
 		weather.setMnt(Integer.parseInt(linearr[2]));

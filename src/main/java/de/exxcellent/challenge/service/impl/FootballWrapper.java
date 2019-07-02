@@ -1,8 +1,8 @@
-package de.exxcellent.challenge.controller;
+package de.exxcellent.challenge.service.impl;
 
+import de.exxcellent.challenge.data.DataBase;
+import de.exxcellent.challenge.data.Football;
 import de.exxcellent.challenge.exception.ExceptionChallenge;
-import de.exxcellent.challenge.repository.DataBase;
-import de.exxcellent.challenge.repository.Football;
 
 public class FootballWrapper extends FileWrapper {
 	

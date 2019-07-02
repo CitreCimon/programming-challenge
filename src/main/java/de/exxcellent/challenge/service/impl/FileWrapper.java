@@ -1,12 +1,13 @@
-package de.exxcellent.challenge.controller;
+package de.exxcellent.challenge.service.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import de.exxcellent.challenge.data.Weather;
 import de.exxcellent.challenge.exception.ExceptionChallenge;
-import de.exxcellent.challenge.repository.Weather;
+import de.exxcellent.challenge.service.interfaces.DataWrapper;
 
 public abstract class FileWrapper implements DataWrapper{
 	

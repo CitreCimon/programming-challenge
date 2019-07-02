@@ -1,7 +1,12 @@
-package de.exxcellent.challenge.repository;
+package de.exxcellent.challenge.data;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Class to store weather and football objects as ArrayLists.
+ * Has controller functions
+ */
 
 public class DataBase {
 	
