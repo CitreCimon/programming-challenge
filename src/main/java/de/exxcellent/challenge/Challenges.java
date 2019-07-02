@@ -18,8 +18,8 @@ import de.exxcellent.challenge.service.impl.WeatherWrapper;
 public class Challenges {
 		
 		//config
-		final String weatherpath = "de/exxcellent/challenge/weather.csv";
-		final String footballpath = "de/exxcellent/challenge/football.csv";
+		private String weatherpath = "de/exxcellent/challenge/weather.csv";
+		private String footballpath = "de/exxcellent/challenge/football.csv";
 		private DataBase db;
 		
 		
